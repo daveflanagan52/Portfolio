@@ -1,0 +1,24 @@
+{
+  "name": "@portfolio/root",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/mochawesome",
+      "**/mochawesome/**"
+    ]
+  },
+  "scripts": {
+    "eslint-fix": "lerna run eslint-fix",
+    "start": "lerna run start",
+    "build": "lerna run build",
+    "containerize": "lerna run containerize"
+  },
+  "dependencies": {
+    "lerna": "^4.0.0"
+  }
+}

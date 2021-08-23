@@ -1,0 +1,262 @@
+$body-bg: #f1f5f9;
+$body-color: #1d212f;
+$primary: #e9c46a;
+$secondary: #e76f51;
+$dark: #1a202e;
+$font-family-base: "Roboto", sans-serif !important;
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+);
+@import "~bootstrap/scss/bootstrap";
+@import "~leaflet/dist/leaflet.css";
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Poppins:wght@100;300;400;700;900&display=swap");
+
+body {
+  overflow-y: scroll;
+}
+.loader {
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1100;
+
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+.timeline {
+  border-left: 3px solid $primary;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+  margin: 0 auto;
+  letter-spacing: 0.2px;
+  position: relative;
+  line-height: 1.4em;
+  font-size: 1.03em;
+  padding: 1rem;
+  list-style: none;
+  text-align: left;
+  margin-left: 6.5rem;
+  height: 100%;
+
+  li {
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.25rem;
+    position: relative;
+
+    &.passed {
+      color: #ccc;
+
+      .text-muted {
+        color: #ccc !important;
+      }
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border: none;
+    }
+
+    .time {
+      position: absolute;
+      display: block;
+      top: 0;
+      right: calc(100% + 2rem);
+      text-align: right;
+      font-weight: 100;
+      font-size: 0.9em;
+    }
+
+    &:after {
+      position: absolute;
+      display: block;
+      top: 0;
+      box-shadow: 0 0 0 3px $primary;
+      left: -1.35rem;
+      background: #fff;
+      border-radius: 50%;
+      height: 0.5rem;
+      width: 0.5rem;
+      content: "";
+      top: 0.5rem;
+    }
+  }
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+.card {
+  .card-img-top {
+    border: 0.5rem solid #fff;
+    border-bottom: 0;
+  }
+  .card-title {
+    margin-bottom: 0;
+  }
+  .card-body {
+    & > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.btn-primary {
+  color: #fff;
+}
+
+header {
+  background-image: url(./Resources/waves.jpg);
+  background-size: cover;
+  background-attachment: scroll;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-bottom: 3rem;
+  min-height: 250px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #27333e99;
+    opacity: 1;
+    z-index: 0;
+    background-image: linear-gradient(-135deg, rgba($primary, 0.8) 25%, rgba($secondary, 0.8));
+  }
+
+  .divider-shape {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    direction: ltr;
+    bottom: -1px;
+    z-index: 1;
+
+    .shape-waves {
+      left: 0px;
+      transform: rotate3d(0, 1, 0, 180deg);
+      height: 50px;
+      width: calc(159% + 1.3px);
+
+      .shape-fill-1 {
+        fill: $body-bg;
+      }
+    }
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+
+    .card {
+      position: relative;
+      bottom: -4rem;
+      z-index: 2;
+
+      .avatar {
+        position: relative;
+        margin: 0 auto;
+        margin-bottom: -1.75rem;
+        top: -2.75rem;
+        border: 5px solid #fff;
+        background: #fff;
+        border-radius: 0.5rem;
+        width: 150px;
+        height: 150px;
+
+        img {
+          width: 100%;
+          border-radius: 0.3rem;
+        }
+      }
+
+      .info {
+        h1 {
+          font-size: 2rem;
+          margin-bottom: 0;
+        }
+  
+        .links {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+  
+          li {
+            a {
+              color: #000;
+              font-size: 2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@include media-breakpoint-up(md) {
+  header {
+    .container {
+      .card {
+        bottom: -7.5rem;
+        .avatar {
+          margin: 0;
+          margin-bottom: -2.75rem;
+          margin-right: 1rem;
+        }
+      }
+    }
+    .divider-shape {
+      .shape-waves {
+        height: 100px;
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.form-control {
+  background: #fff;
+}
+
+.delay {
+  text-decoration: line-through;
+}
+
+footer {
+  border-top: 1px solid #c4c6c7;
+  height: 50px;
+  line-height: 50px;
+  font-size: 80%;
+  margin-top: 1.5rem;
+}

@@ -1,0 +1,47 @@
+version: "3.3"
+volumes:
+  data-db:
+
+services:
+
+  client:
+    build: ./packages/client
+    platform: linux/amd64
+    environment:
+      NODE_ENV: development
+      SERVER_HOST: server:8081
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+      - server
+
+  server:
+    build: ./packages/server
+    platform: linux/amd64
+    environment:
+      NODE_ENV: development
+      TYPEORM_CONNECTION: postgres
+      TYPEORM_HOST: db
+      TYPEORM_USERNAME: ${POSTGRES_USERNAME}
+      TYPEORM_PASSWORD: ${POSTGRES_PASSWORD}
+      TYPEORM_DATABASE: ${POSTGRES_DB}
+      TYPEORM_PORT: 5432
+    ports:
+      - 8081:8081
+    depends_on:
+      - db
+    volumes:
+      - ./packages/server/dist:/dist
+
+  db:
+    build: ./db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - 5431:5432
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
+      - data-db:/var/lib/postgresql/data

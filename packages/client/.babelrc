@@ -1,0 +1,15 @@
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "@babel/plugin-proposal-export-namespace-from",
+    "@babel/plugin-transform-typeof-symbol",
+    "@babel/plugin-proposal-optional-chaining",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-private-methods",
+    "babel-plugin-styled-components",
+    ["wildcard", {
+      "exts": ["js", "es6", "es", "jsx", "svg"]
+    }]
+  ]
+}
