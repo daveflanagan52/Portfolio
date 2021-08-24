@@ -13,6 +13,14 @@ $container-max-widths: (
 @import "~leaflet/dist/leaflet.css";
 @import url("https://fonts.googleapis.com/css2?family=Caveat&family=Poppins:wght@100;300;400;700;900&display=swap");
 
+.cookie {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+}
+
 body {
   overflow-y: scroll;
 }

@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router, Switch, Route, Link,
 } from 'react-router-dom';
 import moment from 'moment';
+import CookieConsent from "react-cookie-consent";
 
 import './App.scss';
 
@@ -21,6 +22,16 @@ import Privacy from './Views/Privacy';
 
 const App: React.FC = () => (
   <Router>
+    <CookieConsent
+      disableStyles={true}
+      buttonClasses="ms-auto btn btn-primary"
+      containerClasses="cookie d-flex align-items-center p-2 bg-dark text-light"
+      contentClasses=""
+      buttonText="OK"
+      buttonWrapperClasses="ms-auto"
+    >
+      Cookies are used to improve your expierience on this site. To find out more, read the <Link to='/privacy'>Privacy Policy</Link>.
+    </CookieConsent>
     <ScrollToTop />
     <Header />
     <Container>
