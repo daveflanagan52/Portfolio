@@ -50,8 +50,8 @@ const Header: React.FC = () => (
           <Column md={6}>
             <Row>
               <Column md={6}>
-                <strong className="d-block text-muted">Email:</strong>
-                contact@daveflanagan.ovh
+                <strong className="d-block text-muted">Where I work:</strong>
+                <a href="https://www.nolwenture.com/" target="_blank" rel="nofollow noreferrer">Nolwenture Oy</a> | <a href="https://www.redkik.com/" target="_blank" rel="nofollow noreferrer">Redkik Oy</a>
               </Column>
               <Column md={6}>
                 <strong className="d-block text-muted">Location:</strong>

@@ -13,6 +13,12 @@ interface IPhoto {
   takenAt: Date;
 }
 
+interface IMessage {
+  name: string;
+  email: string;
+  message: string;
+}
+
 export type {
-  IProject, IPhoto,
+  IProject, IPhoto, IMessage,
 };
