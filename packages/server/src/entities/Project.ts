@@ -13,9 +13,6 @@ export class Project extends BaseEntity {
   @Column()
   description: string;
 
-  @Column()
-  thumbnail: string;
-
   @Column({ nullable: true })
   url: string;
 

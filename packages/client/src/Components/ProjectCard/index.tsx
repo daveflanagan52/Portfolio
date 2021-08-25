@@ -22,7 +22,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => (
     </div>
     <p>{project.description}</p>
     <div className="d-flex">
-      <Button type={ButtonType.Primary} icon={faSearch} text="View" externalLink={project.url} />
+      {project.url && <Button type={ButtonType.Primary} icon={faSearch} text="View" externalLink={project.url} />}
       {project.github && <Button type={ButtonType.Dark} icon={faGithub} externalLink={project.github} className="ms-auto" />}
     </div>
   </Card>

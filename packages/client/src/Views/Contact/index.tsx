@@ -18,7 +18,7 @@ import Alert, { AlertType } from '../../Components/Alert';
 
 const Contact: React.FC = () => {
   const [sent, setSent] = useState(1);
-  const [sendContact, { isLoading }] = useSendContactFormMutation();
+  const [sendContact, { isLoading, isError }] = useSendContactFormMutation();
   return (
     <>
       <Helmet>
@@ -26,7 +26,7 @@ const Contact: React.FC = () => {
       </Helmet>
       <h2>Contact</h2>
       {sent === 2 && <Alert type={AlertType.Success} icon={faCheck} message="Your message was sent successfully!" />}
-      {sent === 3 && <Alert type={AlertType.Error} icon={faTimes} message="An error occured while sending your message, please try again." />}
+      {(isError || sent === 3) && <Alert type={AlertType.Error} icon={faTimes} message="An error occured while sending your message, please try again." />}
       <Formik
         initialValues={{
           name: '',
