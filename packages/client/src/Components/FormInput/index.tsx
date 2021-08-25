@@ -17,9 +17,9 @@ type FormInputProps = {
   disabled?: boolean,
   placeHolder?: string,
   rows?: number,
-  onFocus?: FocusEventHandler<HTMLInputElement>,
-  onChange?: ChangeEventHandler<HTMLInputElement>,
-  onBlur?: FocusEventHandler<HTMLInputElement>,
+  onFocus?: FocusEventHandler,
+  onChange?: ChangeEventHandler,
+  onBlur?: FocusEventHandler,
 }
 
 const FormInput: React.FC<FormInputProps> = (props: FormInputProps) => {
@@ -35,9 +35,9 @@ const FormInput: React.FC<FormInputProps> = (props: FormInputProps) => {
         rows={props.rows}
         disabled={props.disabled}
         placeholder={props.placeHolder}
-        onFocus={() => props.onFocus}
-        onChange={() => props.onChange}
-        onBlur={() => props.onBlur}
+        onFocus={props.onFocus}
+        onChange={props.onChange}
+        onBlur={props.onBlur}
       />
     );
   }

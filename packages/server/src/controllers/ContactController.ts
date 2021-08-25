@@ -26,7 +26,8 @@ export class ContactController extends BaseController {
     }
 
     const mail = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 587,
       auth: {
         user: process.env.GMAIL_USERNAME,
         pass: process.env.GMAIL_PASSWORD
@@ -39,13 +40,8 @@ export class ContactController extends BaseController {
       text: `From: ${message.name.replace(/(<([^>]+)>)/gi, "")} <${message.email.replace(/(<([^>]+)>)/gi, "")}>` + "\n\n" + `${message.message.replace(/(<([^>]+)>)/gi, "")}`
     };
 
-    return new Promise((resolve, reject) => {
-      mail.sendMail(mailOptions, function (error, result) {
-        if (error)
-          return reject(error);
-        resolve(result);
-      });
-    })
+    return mail.sendMail(mailOptions)
+      .then(console.log)
       .then(result => true)
       .catch(error => false);
   }

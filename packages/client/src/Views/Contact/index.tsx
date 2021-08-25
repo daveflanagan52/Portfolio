@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Formik, Form, FormikHelpers } from 'formik';
 import {
-  faComment, faEnvelope, faShare, faUser,
+  faCheck,
+  faComment, faEnvelope, faShare, faTimes, faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
 import FormLabel from '../../Components/FormLabel';
@@ -13,8 +14,10 @@ import Button, { ButtonType } from '../../Components/Button';
 import { IMessage } from '../../Types';
 import { useSendContactFormMutation } from '../../Services/Data';
 import Loader from '../../Components/Loader';
+import Alert, { AlertType } from '../../Components/Alert';
 
 const Contact: React.FC = () => {
+  const [sent, setSent] = useState(1);
   const [sendContact, { isLoading }] = useSendContactFormMutation();
   return (
     <>
@@ -22,6 +25,8 @@ const Contact: React.FC = () => {
         <title>Dave Flanagan | Contact</title>
       </Helmet>
       <h2>Contact</h2>
+      {sent === 2 && <Alert type={AlertType.Success} icon={faCheck} message="Your message was sent successfully!" />}
+      {sent === 3 && <Alert type={AlertType.Error} icon={faTimes} message="An error occured while sending your message, please try again." />}
       <Formik
         initialValues={{
           name: '',
@@ -32,8 +37,10 @@ const Contact: React.FC = () => {
           values: IMessage,
           { setSubmitting }: FormikHelpers<IMessage>,
         ) => {
-          Promise.resolve(sendContact(values))
-            .then(() => setSubmitting(false));
+          return sendContact(values)
+            .then(result => setSent(result ? 2 : 3))
+            .then(() => setSubmitting(false))
+            .catch(() => setSent(3));
         }}
       >
         {(props) => (
