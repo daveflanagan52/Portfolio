@@ -26,16 +26,16 @@ export class ContactController extends BaseController {
     }
 
     const mail = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT || ''),
       auth: {
-        user: process.env.GMAIL_USERNAME,
-        pass: process.env.GMAIL_PASSWORD
+        user: process.env.SMTP_USERNAME,
+        pass: process.env.SMTP_PASSWORD
       }
     });
     const mailOptions = {
-      from: message.email.replace(/(<([^>]+)>)/gi, ""),
-      to: process.env.GMAIL_USERNAME,
+      from: process.env.SMTP_FROM,
+      to: process.env.SMTP_TO,
       subject: 'Portfolio Contact Form',
       text: `From: ${message.name.replace(/(<([^>]+)>)/gi, "")} <${message.email.replace(/(<([^>]+)>)/gi, "")}>` + "\n\n" + `${message.message.replace(/(<([^>]+)>)/gi, "")}`
     };

@@ -25,7 +25,7 @@ const Contact: React.FC = () => {
         <title>Dave Flanagan | Contact</title>
       </Helmet>
       <h2>Contact</h2>
-      {sent === 2 && <Alert type={AlertType.Success} icon={faCheck} message="Your message was sent successfully!" />}
+      {!isError && sent === 2 && <Alert type={AlertType.Success} icon={faCheck} message="Your message was sent successfully!" />}
       {(isError || sent === 3) && <Alert type={AlertType.Error} icon={faTimes} message="An error occured while sending your message, please try again." />}
       <Formik
         initialValues={{
@@ -38,6 +38,7 @@ const Contact: React.FC = () => {
           { setSubmitting }: FormikHelpers<IMessage>,
         ) => {
           return sendContact(values)
+            .then(result => {console.log(result); return result;})
             .then(result => setSent(result ? 2 : 3))
             .then(() => setSubmitting(false))
             .catch(() => setSent(3));
