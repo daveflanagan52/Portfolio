@@ -29,4 +29,6 @@ EXPOSE 8081
 ENV PORT 8081
 ENV NODE_ENV production
 
+HEALTHCHECK CMD curl --fail http://localhost:8081/health || exit 1   
+
 CMD ["yarn", "start:prod"]
